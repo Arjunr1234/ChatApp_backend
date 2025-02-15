@@ -40,12 +40,7 @@ app.use((req, res, next) => {
     req.io = io;  
     next();   
 });
-const loggerMiddleware = (req, res, next) => {
-    const timestamp = new Date().toISOString();
-    console.log(`[${timestamp}] ${req.method} ${req.originalUrl}`);
-    next();
-};
-app.use(loggerMiddleware); // Apply globally ✅
+ 
 app.use('/api/auth', authRoute);
 app.use('/api/chat', chatRoute)
 
