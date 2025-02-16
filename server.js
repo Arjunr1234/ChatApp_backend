@@ -15,7 +15,7 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 //const localOrgin = 'http://localhost:5173' 
-const orgin = 'https://chat-app-frontend-swart-seven.vercel.app'
+const orgin = 'https://chat-app-frontend-swart-seven.vercel.app/'
 
 const io = new Server(server, {
 
