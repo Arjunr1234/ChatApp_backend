@@ -9,6 +9,7 @@ import { HttpStatusCode } from "../utils/statusCodes.js";
 
 export const getUsers = async (req, res, next) => {
   try {
+    
     const response = await getUsersService();
 
     if (!response.success) {

@@ -3,8 +3,6 @@ export const onlineUsers = {};
 const initialization = (io) => {
     io.on("connection", (socket) => {
         
-
-        
         socket.on("join", ({ userId, userName }) => {
             
             onlineUsers[userId] = { socketId: socket.id, name:userName, userId };
