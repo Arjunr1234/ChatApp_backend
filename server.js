@@ -8,6 +8,7 @@ import { connectDB } from './src/config/db.js';
 import authRoute from './src/routes/authRoute.js';
 import initializeSocket from './src/config/socket.js'; 
 import chatRoute from './src/routes/chatRoutes.js';
+import { errorHandler } from './src/middleware/errorMiddlewares.js';
 
 dotenv.config(); 
 
@@ -42,7 +43,9 @@ app.use((req, res, next) => {
 });
  
 app.use('/api/auth', authRoute);
-app.use('/api/chat', chatRoute)
+app.use('/api/chat', chatRoute);
+
+app.use(errorHandler)
 
 
 initializeSocket(io);

@@ -3,8 +3,6 @@ import userModel from "../models/userSchema.js";
 
 export const signUpRepo = async (userData) => {
   try {
-    console.log("This is the userData: ", userData);
-
     const existingUser = await userModel.findOne({ email: userData.email });
 
     if (existingUser) {
@@ -22,7 +20,7 @@ export const signUpRepo = async (userData) => {
     return { success: true, createUser: mainData };
   } catch (error) {
     console.log("Error in signUpRepo: ", error);
-    throw error
+    throw error;
   }
 };
 
@@ -50,10 +48,9 @@ export const signInRepo = async (userData) => {
     };
   } catch (error) {
     console.log("Error in SignInRepo: ", error);
-    throw error
+    throw error;
   }
 };
-
 
 export const getUsersRepo = async (req, res) => {
   try {

@@ -6,6 +6,7 @@ import {
 import { onlineUsers } from "../config/socket.js";
 import { HttpStatusCode } from "../utils/statusCodes.js";
 
+
 export const getUsers = async (req, res, next) => {
   try {
     const response = await getUsersService();
@@ -21,7 +22,7 @@ export const getUsers = async (req, res, next) => {
       .json({ success: response.success, users: response.users });
   } catch (error) {
     console.log("Error in getAllUsers: ", error);
-    next();
+    next(error);
   }
 };
 
@@ -40,7 +41,7 @@ export const getMessages = async (req, res, next) => {
     });
   } catch (error) {
     console.error("Error in getMessages controller: ", error);
-    next(error);
+    next(error)
   }
 };
 
@@ -71,6 +72,6 @@ export const sendMessage = async (req, res, next) => {
     }
   } catch (error) {
     console.log("Error in sendMessage: ", error);
-    next();
+    next(error);
   }
 };
