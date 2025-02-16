@@ -15,12 +15,12 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 //const localOrgin = 'http://localhost:5173' 
-const orgin = 'https://chat-app-frontend-swart-seven.vercel.app/'
+const orgin = 'https://chat-app-frontend-swart-seven.vercel.app'
 
 const io = new Server(server, {
 
     cors: {
-        origin: orgin, 
+        origin: 'https://chat-app-frontend-swart-seven.vercel.app', 
         methods: ["GET", "POST"],
         credentials: true
     }
@@ -29,7 +29,7 @@ const io = new Server(server, {
 
 
 const corsOptions = {
-    origin: orgin,
+    origin: 'https://chat-app-frontend-swart-seven.vercel.app',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE']
 };
