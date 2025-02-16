@@ -58,17 +58,18 @@ export const signIn = async (req, res, next) => {
           message: response.message,
         });
       }
-      
+      console.log(process.env.NODE_ENV === "production")
       res.cookie("accessToken", response.accessToken, {
         httpOnly: true,
-        sameSite: "Lax",  
+        sameSite: "none", 
         secure: process.env.NODE_ENV === "production",  
         maxAge: 15 * 60 * 1000, 
       });
+      console.log();
       
       res.cookie("refreshToken", response.refreshToken, {
         httpOnly: true,
-        sameSite: "Lax",
+        sameSite: "none",
         secure: process.env.NODE_ENV === "production",  
         maxAge: 7 * 24 * 60 * 60 * 1000, 
       });
