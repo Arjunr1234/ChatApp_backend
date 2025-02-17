@@ -3,8 +3,7 @@ import { HttpStatusCode } from "../utils/statusCodes.js";
 
 export const signUp = async (req, res, next) => {
   try {
-    console.log("Entered into signup controller");
-
+    
     const { name, email, phone, password } = req.body;
     console.log(req.body);
 
@@ -39,7 +38,7 @@ export const signUp = async (req, res, next) => {
 export const signIn = async (req, res, next) => {
     try {
       const { email, password } = req.body;
-      console.log("Thsi is the body: ",req.body)
+      
   
       if (!email || !password) {
         return res.status(HttpStatusCode.BAD_REQUEST).json({
@@ -58,7 +57,7 @@ export const signIn = async (req, res, next) => {
           message: response.message,
         });
       }
-      console.log(process.env.NODE_ENV === "production")
+      
       res.cookie("accessToken", response.accessToken, {
         httpOnly: true,
         sameSite: "none", 
@@ -74,15 +73,13 @@ export const signIn = async (req, res, next) => {
         maxAge: 7 * 24 * 60 * 60 * 1000, 
       });
 
-      
-      
-      console.log("This is the response of the userlogin: ", response)
       return res.status(HttpStatusCode.OK).json({
         success: true,
         message: response.message,
         userId: response.userId,
         userName:response.userName
       });
+
     } catch (error) {
       console.error("Error in SignIn: ", error);
       next(error);
@@ -93,13 +90,13 @@ export const signIn = async (req, res, next) => {
       
     res.clearCookie("accessToken", {
         httpOnly: true,
-        sameSite: "Lax",
+        sameSite: "none",
         secure: process.env.NODE_ENV === "production",
       });
     
       res.clearCookie("refreshToken", {
         httpOnly: true,
-        sameSite: "Lax",
+        sameSite: "none",
         secure: process.env.NODE_ENV === "production",
       });
     

@@ -24,14 +24,12 @@ export const authenticateUser = async (req, res, next) => {
         refreshToken,
         process.env.REFRESH_TOKEN_KEY,
         (err, decodedRefresh) => {
-          if (err) {
+          if(err){               
             console.log("Invalid refresh token");
             return res
               .status(401)
               .json({ success: false, message: "Invalid refresh token" });
           }
-
-          console.log("Refresh token valid, issuing");
 
           const newAccessToken = jwt.sign(
             { id: decodedRefresh.id },
@@ -41,7 +39,7 @@ export const authenticateUser = async (req, res, next) => {
 
           res.cookie("accessToken", newAccessToken, {
             httpOnly: true,
-            sameSite: "Lax",
+            sameSite: "none",
             secure: process.env.NODE_ENV === "production",
             maxAge: 15 * 60 * 1000,
           });

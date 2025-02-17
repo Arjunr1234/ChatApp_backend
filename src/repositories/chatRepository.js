@@ -11,7 +11,7 @@ export const sendMessageRepo = async (senderId, receiverId, message) => {
     });
 
     const savedMessage = await newMessage.save();
-    console.log("This is savedMessage: ", savedMessage)
+    
     return {
       _id:savedMessage._id + "",
       senderId: savedMessage.senderId + "",

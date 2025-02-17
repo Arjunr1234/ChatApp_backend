@@ -1,4 +1,3 @@
-// middlewares/errorMiddleware.js
 import { HttpStatusCode } from "../utils/statusCodes.js";
 
 export const errorHandler = (err, req, res, next) => {
